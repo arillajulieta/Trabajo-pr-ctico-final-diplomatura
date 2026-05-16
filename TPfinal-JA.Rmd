@@ -1,0 +1,600 @@
+---
+title: "Trabajo práctico final de la diplomatura"
+author: "Julieta Arilla"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    css: "estilos.css.css"
+    code_folding: hide
+    self_contained: true
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    theme: flatly
+    fig-width: 12
+    fig-height: 10
+    fig-format: retina
+    warning: false
+    message: false
+execute:
+  freeze: auto
+---
+
+# Resumen ejecutivo
+
+La informalidad sigue siendo una característica propia de los mercados laborales de América Latina y, en particular, de la Argentina. Esto no solo se asocia con remuneraciones bajas y mayor incidencia de la pobreza sino también con una falta de protección social. El presente trabajo lleva a cabo una revisión bibliográfica indagando en las distintas definiciones de informalidad y precariedad laboral, y un análisis de cómo afectan distintas características de los trabajadores a la informalidad de sus puestos. El análisis estadístico se hizo utilizando los datos de la Encuesta Permanente de Hogares (EPH) del cuarto trimestre de 2024, y se usa como definición de informalidad a los asalariados sin descuento jubilatorio. Los resultados evidencian que la informalidad no es homogénea, las mujeres, los jóvenes, los trabajadores con menor nivel educativo y aquellos empleados en sectores como construcción y servicio doméstico o en empresas pequeñas son quienes se ven más afectados. Además, la penalidad salarial asociada a la informalidad se destaca como una visible desventaja para los trabajadores no registrados.
+
+------------------------------------------------------------------------
+
+# Introducción
+
+La informalidad es uno de los principales desafíos de los mercados de trabajo en América Latina y, particularmente, en Argentina, ha dejado de ser un fenómeno marginal, para ser un rasgo cada vez más constitutivo de nuestro mercado laboral. Es un fenómeno heterogéneo que tiene repercusiones directas en la calidad de vida de los trabajadores y en la sostenibilidad de los sistemas de protección social.
+
+El objetivo principal del trabajo es analizar algunas características de la informalidad en Argentina, utilizando como base los microdatos de la Encuesta Permanente de Hogares (EPH). Para poder abordar este fenómeno estructural de nuestro mercado de trabajo es central identificar qué grupos son más vulnerables a tener puestos informales y entender cómo afecta el empleo informal a las remuneraciones de los trabajadores.
+
+En una primera etapa, se realiza una revisión de la literatura centrada en distintas definiciones sobre la informalidad y precariedad laboral, planteando algunas preguntas que guiaron el proceso del trabajo. Una vez hecho esto, se hace un análisis de los datos de la EPH, a partir de los microdatos de la encuesta, correspondientes al cuarto trimestre del año 2024, llevando a cabo una caracterización del mercado de trabajo enfocándose en distintas características al interior de la informalidad y las diferencias salariales entre las categorías ocupacionales.
+
+------------------------------------------------------------------------
+
+# Desarrollo conceptual
+
+El concepto de trabajo ha ido evolucionando junto con la historia de la humanidad. En la sociedad la vida se estructura en base al trabajo, que no solo es el medio principal a través del cual se satisfacen las necesidades sino también una fuente de identidad e integración social (Gomez-Baggethun y Naredo, 2020). El trabajo es así entendido como una actividad central para la subsistencia y el desarrollo.
+
+En este marco, la Organización Internacional del Trabajo (OIT) ha introducido la noción de “trabajo decente”, definido en el año 1999 y caracterizado por cuatro objetivos estratégicos: los derechos en el trabajo, las oportunidades de empleo, la protección social y el diálogo social. La definición de trabajo decente busca dejar a la vista lo que debería ser un buen empleo en el contexto de un mundo globalizado: una ocupación remunerada de manera justa y que es llevada a cabo en condiciones de equidad, seguridad, libertad y respeto a la dignidad humana (Levaggi, 2006). En contraposición con esta idea de trabajo decente, en Argentina el empleo se caracteriza por la persistencia de la informalidad y diversas formas de precariedad.
+
+El primer antecedente de la noción de empleo informal se origina en un estudio de Hart (1970) sobre mercados laborales en África, que permite mostrar la existencia de un grupo de trabajadores pobres que integraban el sistema productivo. Posteriormente, la OIT (1972) entiende al sector informal como resultado del funcionamiento del capitalismo periférico, de ahí el origen productivista del término que define al sector informal como pequeñas unidades de baja productividad y donde quienes trabajan tienden a tener ingresos bajos e irregulares.
+
+Sin embargo, en los años noventa el concepto se desplazó hacia un criterio legalista, en el que la determinación del sector se asocia a aspectos formales, enfatizando la ausencia de registro de los trabajadores. Además, finalmente aparece también el enfoque legalista para los establecimientos, es decir, asociado a la condición de registro de los mismos.
+
+Por otro lado, se dan nuevas discusiones sobre la relación entre informalidad y precariedad laboral, dado que existen trabajadores informales sin registro, pero también asalariados registrados en condiciones precarias, con derechos limitados y protección reducida (Pok y Lorenzetti, 2007). Es así que la precariedad se contrapone a lo que se denomina empleo típico.
+
+Fernández Franco, Graña, Lastra y Weksler (2022) sostienen que la heterogeneidad productiva, que caracteriza a la región latinoamericana, perpetúa brechas en la calidad del empleo. Por un lado, el sector formal caracterizado por una mayor productividad, tecnología, capital y protección social de los trabajadores, y por el otro, el sector informal, con una menor capitalización y unidades de baja escala. Este último sector, se caracteriza por generar puestos de trabajo en peores condiciones y de baja calificación.
+
+En Argentina, y en la región en general, esto permite comprender a la informalidad como un fenómeno de doble dimensión, por un lado, legal, por la falta de registro de los trabajadores, y por el otro, estructural, vinculado a la heterogeneidad productiva. Es por este motivo, que la informalidad se ha vuelto un rasgo característico de los mercados de trabajo latinoamericanos.
+
+Frente a esta problemática, surgen algunas de las preguntas que orientan este trabajo: ¿Qué sectores de la población son más vulnerables a ser informales? ¿Características como el género o el nivel educativo de los trabajadores puede influir en que un trabajador sea informal? Analizar las dinámicas de este fenómeno se vuelve fundamental para comprenderlo y abordarlo. Un mercado de trabajo en el que un porcentaje amplio de la población trabajadora, durante un tiempo prolongado, se encuentra en puestos de trabajo informales no solo afecta la calidad de vida de esos trabajadores, sino que tiene implicancias mucho más amplias.
+
+Además, surge otra pregunta central para entender la informalidad: ¿Afecta a la remuneración de los trabajadores tener un empleo informal? Es imprescindible observar las brechas salariales entre las categorías ocupacionales del mercado de trabajo argentino, teniendo en consideración que en nuestro país, como en la mayoría de los países de la región, alrededor del 80-90% de los ingresos familiares totales provienen del mercado de trabajo (Maurizio, 2018), lo que pone de manifiesto la centralidad del salario como medio de subsistencia.
+
+Es así que el siguiente trabajo, a través de un análisis empírico, buscará esbozar algunas respuestas, entendiendolas fundamentales para comprender un fenómeno multidimensional que ha dejado de ser marginal para constituirse como un rasgo característico del mercado de trabajo argentino.
+
+------------------------------------------------------------------------
+
+# Metodología
+
+Para el análisis se utilizó la Encuesta Permanente de Hogares (EPH) que está definida por el INDEC como: “un programa nacional de producción permanente de indicadores sociales cuyo objetivo es conocer las características sociodemográficas y socioeconómicas de la población”. Esta encuesta se lleva a cabo en su forma original desde el año 1973, realizándose dos veces al año. A partir del año 2003 la misma ha sido reformulada modificando ciertos criterios metodológicos y operativos, teniendo actualmente una periodicidad trimestral. La EPH a través de un proceso de incorporación progresiva ha llegado a cubrir 31 aglomerados urbanos y un área urbano-rural.
+
+Las bases cuentan con una gran cantidad de variables de hogares y personas que permiten el análisis de las diversas características demográficas y socioeconómicas de la población. Es una encuesta por muestreo, es decir que, para conocer estas características del total de hogares, se lleva a cabo una encuesta a una porción representativa. Los hogares encuestados son seleccionados aleatoriamente en dos etapas, la primera etapa, se selecciona una cantidad de subdivisiones de cada aglomerado y luego a partir de esas áreas seleccionadas se realiza una selección aleatoria de viviendas, y se encuesta a los hogares que habitan esas viviendas. En las bases cada registro de la encuesta tiene un número de identificación, llamado CODUSU, que permite relacionar una vivienda con los hogares y personas que la integran.
+
+Con la intención de garantizar la representatividad de la población bajo estudio, cada observación cuenta con factores de expansión. En este trabajo se emplean dos: PONDERA y PONDIIO, que ajusta específicamente los ingresos de la ocupación principal.
+
+Para la elaboración de este trabajo se utilizan los microdatos del cuarto trimestre del año 2024, procesados a través de R studio. El análisis se enfoca en la población ocupada, particularmente centrándose en la condición de registro de los asalariados, definida a través de la variable PP07H, que indaga si el trabajador percibe descuento jubilatorio en su empleo principal. Se consideran registrados a los ocupados con descuento jubilatorio y no registrados a quienes declaran no tenerlo. Es importante entonces resaltar que para este análisis se definirá al trabajo informal como el no registro de una relación laboral asalariada, medido como el empleo que no efectúa una contribución a la seguridad social (Bertranou y Casanova, 2014).
+
+Finalmente, cabe destacar algunas de las limitaciones que presenta la EPH, en primer lugar su cobertura alcanza a la población urbana dejando afuera las características de la población rural, si bien se cuenta con ponderadores que permite ampliar la muestras a un tamaño representativo esta solo cubre al 62,7% de la población total. Por otro lado, otra cuestión vinculada a la encuesta es que los datos de ingresos laborales suelen verse afectados por problemas de subdeclaración, lo que puede sesgar las estimaciones.
+
+----------------------------------------------------------------------------
+
+```{r preparacion_datos, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+rm(list = ls())
+options(scipen=999)
+
+# LIBRERÍAS
+library(tidyverse) 
+library(eph) 
+library(dplyr) 
+library(ggplot2) 
+library(paletteer)
+
+# MICRODATOS
+base <- get_microdata(year = 2024, period = 4, type = "individual")
+
+# VARIABLES
+base_proc <- base %>%
+  select(
+    CODUSU, NRO_HOGAR, COMPONENTE, SECTOR, CH03, CH04, CH06, CH07, CH10, CH12, CH13, CH14,PP3E_TOT, PP03G, PP03H,
+    NIVEL_ED, REGION, AGLOMERADO, PONDERA, ESTADO, CAT_OCUP, PP04B_COD, PP04A, PP04B1, PP04C, PP04C99, PP07H, P21, PONDIIO
+  ) %>%
+  rename(codusu = CODUSU, nro_hogar = NRO_HOGAR,componente = COMPONENTE, pondera = PONDERA, sexo = CH04,edad = CH06, estado_civil = CH07, nivel_ed = NIVEL_ED, cat_ocup = CAT_OCUP, estado = ESTADO, region = REGION, aglomerado = AGLOMERADO, cod_rama = PP04B_COD, pondera_in = PONDIIO)
+
+# IDENTIFICADOR DE HOGAR
+base_proc <- base_proc %>%
+  mutate(zidh = group_indices(., codusu, nro_hogar, aglomerado))
+
+# VARIABLE MIEMBRO
+base_proc <- base_proc %>%
+  mutate(nomiembro = if_else(componente %in% c(51, 71), 1, 0))
+
+# EDAD Y CATEGORÍAS DE EDAD
+base_proc <- base_proc %>%
+  mutate(
+    edad2 = edad^2,
+    edadt = case_when(
+      edad >= 16 & edad < 25 ~ 1,
+      edad >= 25 & edad < 45 ~ 2,
+      edad >= 45 & edad < 60 ~ 3,
+      edad >= 60 ~ 4))
+
+base_proc <- base_proc %>%
+  mutate(sexo_bin = if_else(sexo == 1, 1, 0))
+
+# VARIABLES OCUPACIONALES
+base_proc <- base_proc %>%
+  mutate(
+    ocupado = ifelse(estado == 1, 1, 0),
+    desocupado = ifelse(estado == 2, 1, 0),
+    activo = ifelse(ocupado == 1 | estado == 2, 1, 0),
+    subocupado = if_else(ocupado == 1 & PP3E_TOT < 35 & PP03G == 1 & PP03H == 1, 1, 0),
+    asalariado = if_else(ocupado == 1 & cat_ocup == 3, 1, 0),
+    no_asal = if_else(ocupado == 1 & cat_ocup %in% c(1, 2, 4), 1, 0),
+    asareg = if_else(ocupado == 1 & cat_ocup == 3 & PP07H == 1, 1, 0),
+    asanreg = if_else(ocupado == 1 & cat_ocup == 3 & PP07H == 2, 1, 0),
+    cuenta_prop = if_else(ocupado == 1 & cat_ocup == 2, 1, 0),
+    patron = if_else(ocupado == 1 & cat_ocup == 1, 1, 0),
+    fam_no_remu = if_else(ocupado == 1 & cat_ocup == 4, 1, 0),
+    serdom = if_else(ocupado == 1 & PP04B1 == 1, 1, 0))
+
+# NIVEL EDUCATIVO
+base_proc <- base_proc %>%
+  mutate(
+    hpi = if_else(nivel_ed == 1, 1, 0),
+    pc = if_else(nivel_ed == 2, 1, 0),
+    si = if_else(nivel_ed == 3, 1, 0),
+    sc = if_else(nivel_ed == 4, 1, 0),
+    ti = if_else(nivel_ed == 5, 1, 0),
+    tc = if_else(nivel_ed == 6, 1, 0),
+    educr = case_when(
+      hpi == 1 | pc == 1 | si == 1 ~ 1,
+      sc == 1 | ti == 1 ~ 2,
+      tc == 1 ~ 3))
+
+# RAMA DE ACTIVIDAD
+base_proc <- base_proc %>%
+  mutate(
+    rama = case_when(
+      cod_rama >= 100 & cod_rama < 1000 ~ 1,
+      cod_rama >= 1000 & cod_rama < 3400 ~ 2,
+      cod_rama == 4000 ~ 3,
+      cod_rama >= 4500 & cod_rama < 4900 ~ 4,
+      cod_rama >= 5500 & cod_rama < 5700 ~ 5,
+      cod_rama >= 4900 & cod_rama < 5400 ~ 6,
+      cod_rama >= 6200 & cod_rama < 7500 ~ 7,
+      cod_rama >= 8300 & cod_rama < 8500 ~ 8,
+      cod_rama >= 8500 & cod_rama < 8600 ~ 9,
+      cod_rama >= 8600 & cod_rama < 8900 ~ 10,
+      cod_rama == 9700 ~ 11,
+      TRUE ~ 99))
+
+# TAMAÑO DEL ESTABLECIMIENTO
+base_proc <- base_proc %>%
+  mutate(
+    tamest = case_when(
+      PP04C %in% 1:5 | (PP04C == 99 & PP04C99 == 1) ~ 1,
+      PP04C %in% 6:8 | (PP04C == 99 & PP04C99 == 2) ~ 2,
+      PP04C %in% 9:12 | (PP04C == 99 & PP04C99 == 3) ~ 3,
+      serdom == 1 ~ 1,
+      TRUE ~ NA_real_))
+
+#ASALARIADOS NO REGISTRADOS - definicion informalidad para el trabajo
+base_proc <- base_proc %>%
+  mutate(
+    informal = if_else(asanreg == 1, 1, 0))
+
+# INFORMALIDAD - ASALARIADOS
+asalariados <- base_proc %>%
+  filter(asalariado == 1) %>%
+  mutate(
+    registro = case_when(
+      asareg == 1 ~ "Registrado",
+      asanreg == 1 ~ "No registrado")
+  ) %>%
+  filter(!is.na(registro))
+
+# Ingresos promedio 
+asalariados_ingresos <- asalariados %>%
+  filter(P21 > 0) %>%
+  group_by(registro) %>%
+  summarise(salario_promedio = weighted.mean(P21, pondera_in, na.rm = TRUE),
+            .groups = "drop") %>%
+  arrange(-salario_promedio)
+
+#TASAS
+base_proc %>%
+  filter(asalariado == 1) %>%
+  summarise(
+    total_asalariados = sum(pondera, na.rm = TRUE),
+    informales = sum(pondera * informal, na.rm = TRUE),
+    porcentaje_informal = sum(pondera * informal, na.rm = TRUE) / sum(pondera, na.rm = TRUE) * 100
+  )
+
+tasa_informalidad_sexo <- base_proc %>%
+  filter(asalariado == 1) %>%
+  group_by(sexo_bin) %>%
+  summarise(
+    total_asalariados = sum(pondera, na.rm = TRUE),
+    informales = sum(pondera * informal, na.rm = TRUE),
+    tasa_informalidad = informales / total_asalariados * 100
+  ) %>%
+  mutate(sexo = if_else(sexo_bin == 1, "Varones", "Mujeres")) %>%
+  select(sexo, total_asalariados, informales, tasa_informalidad)
+
+asalariados_por_sexo <- base_proc %>%
+  filter(asalariado == 1) %>%
+  group_by(sexo_bin) %>%
+  summarise(
+    total_asalariados = sum(pondera, na.rm = TRUE)
+  ) %>%
+  mutate(sexo = if_else(sexo_bin == 1, "Varones", "Mujeres")) %>%
+  select(sexo, total_asalariados)
+
+informales_16_24 <- base_proc %>%
+  filter(asalariado == 1, edad >= 16, edad <= 24) %>%
+  summarise(
+    total_asalariados_16_24 = sum(pondera, na.rm = TRUE),
+    informales_16_24 = sum(pondera * informal, na.rm = TRUE),
+    tasa_informalidad_16_24 = informales_16_24 / total_asalariados_16_24 * 100)
+
+tasas_laborales <- base_proc %>%
+  summarise(
+    tasa_actividad = weighted.mean(activo, pondera, na.rm = TRUE),
+    tasa_empleo = weighted.mean(ocupado, pondera, na.rm = TRUE),
+    tasa_desocupacion = weighted.mean(desocupado, pondera, na.rm = TRUE) / 
+      weighted.mean(activo, pondera, na.rm = TRUE),
+    tasa_subocupacion = weighted.mean(subocupado, pondera, na.rm = TRUE) /
+      weighted.mean(activo, pondera, na.rm = TRUE)
+  ) %>%
+  mutate(across(everything(), ~ round(.x * 100, 1)))
+```
+
+------------------------------------------------------------------------
+
+# Resultados y análisis de los mismos
+
+El mercado laboral argentino presenta características estructurales que representan desafíos a la hora de entender, en este sentido es un mercado muy heterogéneo, tanto en la calidad del empleo como en las formas de inserción. Se observan sectores de alta productividad y elevados niveles de formalización, y, simultáneamente, una gran cantidad de trabajadores en empleos informales o precarios. Esto se traduce en desigualdades de estabilidad y acceso a las protecciones sociales pero también en materia de las remuneraciones.
+
+A partir de los datos del cuarto trimestre del 2024, observamos que la tasa de actividad se ubica en 48,8%, es decir que poco menos de la mitad de la población está económicamente activa. Al interior de esta población activa, la tasa de empleo es del 45,7% y la tasa de desocupación es del 6,4%. La tasa de subocupación, que es del 11,7%, indica los ocupados que trabajan menos de 35 horas semanales y están dispuestos a trabajar más horas.
+
+En relación a la distribución de los trabajadores según su categoría ocupacional, los datos muestran que el 72,3% de los empleados en Argentina son asalariados, dentro de esta categoría es importante destacar que el 46,2% son asalariados con descuento jubilatorio y el 26,1% no cuentan con descuento jubilatorio. El 23,8% de los trabajadores integran la categoría ocupacional de cuentapropistas. Finalmente, un pequeño porcentaje de los trabajadores son patrones (3,5%) y familiares sin remuneración (0,3%).
+
+```{r grafico_catocup}
+base_proc %>%
+  filter(ocupado == 1) %>%
+  mutate(categoria = case_when(
+    asareg == 1 ~ "Asalariado 
+    registrado",
+    asanreg == 1 ~ "Asalariado 
+    no registrado",
+    cuenta_prop == 1 ~ "Cuenta propia",
+    patron == 1 ~ "Patron",
+    fam_no_remu == 1 ~ "Familiar no 
+    remunerado",
+    serdom == 1 ~ "Servicio domestico",
+    TRUE ~ "Otro"
+  )) %>%
+  count(categoria, wt = pondera) %>%
+  mutate(porc = round(n / sum(n) * 100, 1)) %>%
+  ggplot(aes(x = reorder(categoria, -porc), y = porc)) +
+    geom_col(fill = "thistle4") +
+  geom_text(aes(label = paste0(porc, "%")), vjust = -0.5) +
+  labs(
+    title = "Distribución de los trabajadores según categoría ocupacional",
+    x = "", y = "%",
+    caption = "Fuente: elaboración propia en base a datos del 4to trimestre de 2024 de microdatos de la EPH-INDEC"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic"),
+    legend.position = "none"
+  )
+```
+
+
+La informalidad laboral continúa siendo una de las características estructurales de los mercados laborales de la región, y particularmente de nuestro país, asimismo, este fenómeno se distribuye heterogéneamente entre los trabajadores. Si nos centramos en el 26,1% de los asalariados sin descuento jubilatorio, podemos ver esta heterogeneidad en los distintos grupos de la población, según su género, edad, nivel educativo, rama de actividad y el tamaño del establecimiento en el que trabajan. Los datos que se presentan a continuación permiten comprender mejor la magnitud del problema, los factores que determinan el fenómeno y también resulta útil para identificar los grupos más vulnerables.
+
+La incidencia de la informalidad varía según el género, en particular, en el cuarto trimestre 2024, la tasa de informalidad asalariada total fue 36,1%, siendo 34,2% entre los hombres y 38,4% entre las mujeres, es decir que la tasa de informalidad femenina fue 4 puntos porcentuales más elevada que la tasa masculina. Sin embargo, se vuelve relevante analizar la composición de la informalidad por género, dado que los hombres presentan una mayor proporción en el total de los asalariados, en este sentido, el 53,5% de los asalariados sin descuento jubilatorio son hombres. En relación a los tramos de edad, se observa que los jóvenes presentan una tasa de informalidad significativamente más elevada que otros grupos etarios. Observando que, de los asalariados, casi 7 de cada 10 jóvenes de entre 16 y 24 años son informales.
+
+La combinación de distintas dimensiones puede aportar un análisis relevante para caracterizar con mayor profundidad la informalidad en Argentina. En el gráfico que presento a continuación puede observarse que la tasa de informalidad femenina supera a la masculina en todos los grupos etarios. Las mujeres jóvenes, entre 16 y 24 años, son quienes muestran los valores más elevados, con una incidencia del 65,9%, seguidos por los varones de la misma edad, con 64,9%, lo que sugiere que la juventud, más allá del género, es un factor de alta exposición a empleos informales. Sin embargo, en los tramos de mayor edad, las brechas de género se hacen más notorias. Estos datos reflejan que, aunque tanto hombres como mujeres se ven afectados por la informalidad laboral, principalmente en sus primeros años de inserción al mercado de trabajo, las mujeres mantienen una mayor exposición a la informalidad a lo largo de su vida laboral.
+
+```{r grafico_edad}
+base_proc %>%
+  filter(asalariado == 1, !is.na(edadt), !is.na(informal)) %>%
+  group_by(sexo_bin, edadt) %>%
+  summarise(
+    informalidad = sum(informal * pondera, na.rm = TRUE) / sum(pondera, na.rm = TRUE) * 100,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    sexo_label = if_else(sexo_bin == 1, "Varon", "Mujer"),
+    edad_label = case_when(
+      edadt == 1 ~ "16-24",
+      edadt == 2 ~ "25-44",
+      edadt == 3 ~ "45-60",
+      edadt == 4 ~ ">60"
+    ),
+    edad_label = factor(edad_label, levels = c("16-24", "25-44", "45-60", ">60"))
+  ) %>%
+  ggplot(aes(x = edad_label, y = informalidad, fill = sexo_label)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = paste0(round(informalidad,1), "%")), 
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  labs(
+    title = "Informalidad laboral segun género y tramo de edad",
+    x = "Tramo de edad",
+    y = "Porcentaje de informalidad",
+    fill = "Genero",
+    caption = "Fuente: elaboracion propia en base a datos del 4to trimestre de 2024 de microdatos de la EPH-INDEC."
+  ) +
+  scale_fill_manual(values = c("Mujer" = "palevioletred4", "Varon" = "palegreen4")) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic"),
+    legend.text = element_text(size = 11)
+  )+
+  guides(fill = guide_legend(title = NULL))
+```
+
+
+El nivel educativo también es un factor clave para entender la distribución de la informalidad entre los trabajadores. Los datos nos permiten ver una clara correlación entre un mayor nivel educativo y una menor incidencia de empleo informal. Casi 6 de cada 10 trabajadores con hasta el secundario incompleto son informales. Analizando conjuntamente con el género, las mujeres con menor nivel educativo, aquellas que no completaron el nivel secundario, presentan una tasa de informalidad del 66,3%, mientras que para los hombres en la misma situación la tasa es del 53,5%.
+
+```{r grafico_nivel_educativo}
+base_proc <- base_proc %>%
+  mutate(
+    nivel_educ_simple = case_when(
+      nivel_ed %in% c(7, 1, 2, 3) ~ "Hasta secundario 
+      incompleto",
+      nivel_ed %in% c(4, 5) ~ "Hasta 
+      universitario completo",
+      nivel_ed == 6 ~ "Universitario 
+      completo",
+      TRUE ~ NA_character_
+    )
+  )
+base_proc %>%
+  filter(asalariado == 1, !is.na(nivel_educ_simple)) %>%
+  group_by(sexo_bin, nivel_educ_simple) %>%
+  summarise(
+    informalidad = sum(informal * pondera, na.rm = TRUE) / sum(pondera, na.rm = TRUE) * 100,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    sexo_label = if_else(sexo_bin == 1, "Varon", "Mujer")
+  ) %>%
+  ggplot(aes(x = nivel_educ_simple, y = informalidad, fill = sexo_label)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = paste0(round(informalidad, 1), "%")), 
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  labs(
+    title = "Incidencia de informalidad por género y nivel educativo",
+    x = "Nivel educativo",
+    y = "Porcentaje de informalidad",
+    fill = "Género",
+    caption = "Fuente: elaboracion propia en base a datos del 4to trimestre de 2024 de microdatos de la EPH-INDEC."
+  ) +
+  scale_fill_manual(values = c("Mujer" = "#5D478B", "Varon" = "olivedrab4")) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic"),
+    legend.text = element_text(size = 11)
+  ) +
+  guides(fill = guide_legend(title = NULL))
+```
+
+
+Por otro lado, las tasas de informalidad difieren significativamente entre las ramas del mercado de trabajo, lo que pone de manifiesto las desigualdades estructurales en la distribución del empleo informal. De esta manera, el servicio doméstico y la construcción se destacan como sectores con una alta proporción de empleo informal.
+
+En el servicio doméstico, un sector caracterizado por una predominante participación femenina, el 76,8% del total de los trabajadores se encuentran en condición de informalidad. Por el otro lado, la construcción, es otra de las ramas que expone una alta tasa de informalidad, siendo la misma del 73,2%, a diferencia del servicio doméstico esta rama está integrada por una mayoría de trabajadores varones. Aunque en términos generales esta rama presenta mayores salarios que el servicio doméstico, la informalidad sigue siendo un desafío importante
+
+En contraposición, sectores como el público (que considera tanto la administración pública como los servicios de educación y salud públicos) y la educación presentan tasas de informalidad menores, siendo 9,2% y 9,4% respectivamente.
+
+```{r grafico_ramas}
+base_proc %>%
+  filter(asalariado == 1, !is.na(rama), rama != 99) %>%
+  group_by(rama) %>%
+  summarise(
+    informalidad = sum(informal * pondera, na.rm = TRUE) / sum(pondera, na.rm = TRUE) * 100,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    rama_label = factor(rama, levels = 1:11, labels = c(
+      "Primarias", "Industria", "Construcción", "Comercio",
+      "Hoteles/Rest.", "Transporte", "Servicios financieros",
+      "Adm. Pública", "Educación", "Salud", "Servicio doméstico"
+    ))
+  ) %>%
+  ggplot(aes(x = reorder(rama_label, informalidad), y = informalidad, fill = rama_label)) +
+  geom_col(show.legend = FALSE) +
+  geom_text(
+  aes(label = paste0(round(informalidad, 1), "%")), color = "black", position = position_stack(vjust = 0.5), size = 3
+  ) +
+  coord_flip() +
+  labs(
+    title = "Incidencia de informalidad por rama de actividad",
+    x = "Rama de actividad",
+    y = "Porcentaje de informalidad",
+    caption = "Fuente: elaboracion propia en base a datos del 4to trimestre de 2024 de microdatos de la EPH-INDEC."
+  ) +
+  theme() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic"),
+  ) +
+  scale_fill_brewer(palette = "Set3") 
+```
+
+
+Finalmente, el tamaño del establecimiento en el que se trabaja también tiene un impacto decisivo en las condiciones de formalidad del empleo. Como puede observarse en el gráfico a continuación, mientras que las empresas más pequeñas, con hasta 5 asalariados, concentran la mayor proporción de empleo informal, con una incidencia del 73,4%, en los establecimientos más grandes, con más de 40 asalariados, la tasa de informalidad cae drásticamente (10,8%).
+
+Además, alrededor del 60% de la informalidad total se concentra en empresas con hasta 5 asalariados, lo que sugiere que los pequeños establecimientos tienen mayores dificultades para cumplir con las normativas laborales, lo que lleva a una menor calidad del empleo.
+
+```{r grafico_tamañoestablecimiento}
+base_proc %>%
+  filter(asalariado == 1, !is.na(tamest)) %>%
+  group_by(tamest) %>%
+  summarise(
+    informalidad = sum(informal * pondera, na.rm = TRUE) / sum(pondera, na.rm = TRUE) * 100,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    tamest_label = factor(tamest, levels = 1:3, labels = c(
+      "Hasta 5 trabajadores",
+      "6 a 40 trabajadores",
+      "Más de 40 trabajadores"
+    ))
+  ) %>%
+  ggplot(aes(x = tamest_label, y = informalidad, fill = tamest_label)) +
+  geom_col(show.legend = FALSE) +
+  geom_text(aes(label = paste0(round(informalidad,1), "%")), vjust = -0.5, size = 3) +
+  labs(
+    title = "Incidencia de informalidad por tamaño del establecimiento",
+    x = "Tamaño del establecimiento",
+    y = "Porcentaje de informalidad",
+    caption = "Fuente: elaboracion propia en base a datos del 4to trimestre de 2024 de microdatos de la EPH-INDEC."
+  ) +
+  scale_fill_manual(values = c("Hasta 5 trabajadores" = "lightsalmon3", "6 a 40 trabajadores" = "#7A8B8B", "Más de 40 trabajadores" = "#698B22")) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic"),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11)
+  )  
+```
+
+
+En síntesis, los datos analizados muestran que la informalidad no es homogénea, las mujeres, los jóvenes, los trabajadores con menor nivel educativo y aquellos empleados en sectores como construcción y servicio doméstico o en empresas pequeñas son quienes se ven más afectados por la informalidad. Esta informalidad se caracteriza por bajas remuneraciones y escaso acceso a empleos de calidad, acompañado de una fuerte desprotección de las instituciones y de protección social, lo que empeora la precarización laboral.
+
+Un factor relevante es la penalidad salarial asociada a la informalidad, es decir, la existencia de una brecha en las remuneraciones que no se explica por las características del trabajador o de su ocupación, sino únicamente por su condición de informalidad.
+
+Como puede observarse en el gráfico los patrones presentan los ingresos promedio más elevados, seguidos por los cuentapropistas profesionales y los asalariados registrados, por el otro lado, los cuentapropistas no profesionales y los asalariados no registrados se ubican en la parte más baja de la distribución. La distinción entre los trabajadores por cuenta propia en base a su nivel educativo se vuelve necesaria para comprender a este grupo tan heterogéneo. Esto fortalece la idea de que no solo la condición de registro, sino también el tipo de inserción y el nivel educativo, determinan fuertemente la posición de los trabajadores.
+
+```{r grafico-remuneraciones_promedio}
+base_proc %>%
+  filter(ocupado == 1, P21 > 0, !is.na(P21), !is.na(educr)) %>%
+  mutate(
+    categoria = case_when(
+      asareg == 1 ~ "Asalariado registrado",
+      asanreg == 1 ~ "Asalariado no registrado",
+      cuenta_prop == 1 & educr == 3 ~ "Cuenta propia - Profesionales",  
+      cuenta_prop == 1 & educr != 3 ~ "Cuenta propia - No Profesionales",
+      patron == 1 ~ "Patron",
+      fam_no_remu == 1 ~ "Familiar no remunerado",
+      serdom == 1 ~ "Servicio domestico",
+      TRUE ~ "Otro"
+    )
+  ) %>%
+  group_by(categoria) %>%
+  summarise(ingreso_prom = weighted.mean(P21, pondera_in, na.rm = TRUE), .groups = "drop") %>%
+  arrange(-ingreso_prom) %>%
+  ggplot(aes(x = reorder(categoria, ingreso_prom), y = ingreso_prom, fill = categoria)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  labs(title = "Ingreso promedio por categoría ocupacional",
+       x = "Categoria", y = "Ingreso promedio",
+  caption = "Fuente: elaboracion propia en base a datos del 4to trimestre de 2024 de 
+  microdatos de la EPH-INDEC."
+) +
+  geom_col(fill = "violetred4") +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic"),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11)
+  ) 
+```
+
+
+Si nos centramos en los asalariados, el siguiente gráfico de dispersión de ingresos nos permite observar también esta desigualdad. En el mismo podemos ver que los asalariados no registrados no solo presentan una mediana inferior a la de los asalariados registrados sino que además muestran una distribución más concentrada en los tramos bajos. Esto quiere decir que la informalidad laboral se traduce en una doble desventaja, por un lado, la ausencia de ciertos derechos laborales y de protección social, y por otro lado, menores ingresos. Para facilitar la visualización, en el gráfico se muestran valores de ingresos por debajo de los cinco millones, por encima de este valor se registran sólo unos pocos datos que pertenecen a los asalariados registrados.
+
+```{r grafico_dist.ingresos_asalariados}
+medianas <- base_proc %>%
+  filter(asalariado == 1, !is.na(P21), P21 > 0) %>%
+  mutate(registro = case_when(
+    asareg == 1 ~ "Registrado",
+    asanreg == 1 ~ "No registrado"
+  )) %>%
+  filter(!is.na(registro)) %>%
+  group_by(registro) %>%
+  summarise(mediana = median(P21, na.rm = TRUE), .groups = "drop")
+
+base_proc %>%
+  filter(asalariado == 1, !is.na(P21), P21 > 0) %>%
+  mutate(registro = case_when(
+    asareg == 1 ~ "Registrado",
+    asanreg == 1 ~ "No registrado"
+  )) %>%
+  ggplot(aes(x = registro, y = P21, fill = registro)) +
+  geom_violin(alpha = 0.6) + 
+  stat_summary(fun = median, geom = "point", size = 1.5, color = "black") +
+  scale_y_continuous(labels = scales::comma) +
+  coord_cartesian(ylim = c(0, 5000000)) +
+  labs(title = "Distribución de ingresos de asalariados registrados y 
+       no registrados",
+       subtitle = "(el punto negro es la mediana de los ingresos)",
+       y = "Ingreso individual de la ocupación principal", x = "",
+      caption = "Fuente: elaboracion propia en base a datos del 4to trimestre de 2024 de microdatos de la EPH-INDEC.") +
+  scale_fill_manual(values = c("Registrado" = "#A9C8FF", "No registrado" = "#A90C38")) +
+  guides(fill = guide_legend(title = NULL))+
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    plot.caption = element_text(hjust = 0, size = 9, face = "italic"),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11)
+  )    
+```
+
+Los resultados nos permiten confirmar que la informalidad no solo reproduce desigualdades de género, edad y nivel educativo, sino que también se concentra en sectores y establecimientos de baja productividad. Una consecuencia observable de este fenómeno es la penalidad salarial que trae aparejada. Los trabajadores no registrados se enfrentan a condiciones laborales inestables y carecen de los beneficios de la seguridad social, lo que hace que haya una estrecha relación entre informalidad y pobreza. La falta de estabilidad y las menores protecciones laborales en el sector informal, acompañado de la penalidad salarial, dificultan que estos trabajadores puedan superar la línea de pobreza, incluso en contextos de empleo.
+
+------------------------------------------------------------------------------
+
+# Bibliografía
+
+Beccaria, L., & Groisman, F. (2015). Informalidad y segmentación del mercado laboral: El caso de la Argentina. Revista CEPAL, 117, diciembre.
+
+Colombo, C., Hernández, J. P., Kaplan, D., & Rucci, G. (2024). Problemas estructurales del mercado laboral en Argentina (Nota Técnica IDB-TN-2958). Banco Interamericano de Desarrollo, División de Mercados Laborales y Seguridad Social.
+
+Espejo, A. (2022). Informalidad laboral en América Latina: Propuesta metodológica para su identificación a nivel subnacional (Documentos de Proyectos LC/TS.2022/6). Comisión Económica para América Latina y el Caribe (CEPAL).
+
+Fernández Franco, Graña, Lastra y Weksler (2022). Calidad del empleo y estructura del mercado de trabajo en América Latina desde una perspectiva comparada. Ensayos de Economía.
+
+INDEC. (2003). La nueva Encuesta Permanente de Hogares de Argentina. 2003.
+
+INDEC. (2011). Encuesta Permanente de Hogares: Conceptos de condición de actividad, subocupación horaria y categoría ocupacional.
+
+INDEC. (2025). Encuesta Permanente de Hogares: Diseño de registro y estructura para las bases preliminares Hogar y Personas.
+
+Levaggi, V. (2006). Democracia y trabajo decente en América Latina (OIT, Oficina Internacional del Trabajo, Lima).
+
+Maurizio, R. (2014) “Labor informality and poverty in Latin America. The case of Argentina, Brazil, Chile and Peru”, en Cling, J., Lagrée, S., Razafindrakoto, M. y Roubaud, F. (eds.) The informal economy in developing countries, Routledge.
+
+Maurizio, R. (2021). Empleo e informalidad en América Latina y el Caribe: Una recuperación insuficiente y desigual (Nota técnica, Serie Panorama Laboral en América Latina y el Caribe 2021). OIT.
+
+Maurizio, R. y Álvarez Kuhnle, T. (2024). Precariedad laboral y pobreza: El creciente fenómeno del trabajador pobre. Alquimias Económicas.
+
+Mera, M., Karczmarczyk, M., & Petrone, L. (2021). El mercado laboral en Argentina: Estructura, impacto del COVID-19 y lecciones para el futuro (Documento de Trabajo N.º 198). CIPPEC.
+
+OIT. (1949). Convenio sobre la protección del salario, C095 (núm. 95).
+
+OIT. (2022). Fijación de salarios adecuados: La cuestión de los salarios vitales (Nota de la OIT).
+
+Pok y Lorenzetti (2007). El abordaje conceptual metodológico de la informalidad. 
+
+Rosenbluth, G. (1994). Informalidad y pobreza en América Latina. Oficial de Asuntos Sociales, División de Desarrollo Social de la CEPAL.
+
